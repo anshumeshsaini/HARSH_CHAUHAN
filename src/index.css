@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Cyber-Luxury Dark Theme */
+    --background: 0 0% 2%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Neon Cyan Primary */
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    /* Secondary - Soft teal */
+    --secondary: 180 30% 15%;
+    --secondary-foreground: 180 100% 70%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 180 100% 40%;
+    --accent-foreground: 0 0% 0%;
+
+    /* WhatsApp Green for CTAs */
+    --whatsapp: 142 70% 45%;
+    --whatsapp-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 180 20% 15%;
+    --input: 180 20% 10%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens */
+    --glow-cyan: 0 0 30px hsl(180 100% 50% / 0.5);
+    --glow-cyan-strong: 0 0 60px hsl(180 100% 50% / 0.8);
+    --glow-whatsapp: 0 0 30px hsl(142 70% 45% / 0.6);
+    
+    /* Glassmorphism */
+    --glass-bg: hsl(0 0% 5% / 0.7);
+    --glass-border: hsl(180 100% 50% / 0.2);
+    
+    /* Gradients */
+    --gradient-cyan: linear-gradient(135deg, hsl(180 100% 50%) 0%, hsl(190 100% 40%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 2%) 0%, hsl(0 0% 5%) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(180 100% 50% / 0.15) 0%, transparent 70%);
+  }
+
+  .dark {
+    --background: 0 0% 2%;
+    --foreground: 0 0% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply relative overflow-hidden rounded-xl;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(180 100% 50% / 0.1), transparent 50%);
+  }
+
+  .glass-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Neon Text */
+  .neon-text {
+    @apply text-primary;
+    text-shadow: 
+      0 0 10px hsl(180 100% 50% / 0.8),
+      0 0 20px hsl(180 100% 50% / 0.6),
+      0 0 40px hsl(180 100% 50% / 0.4);
+  }
+
+  /* Glow Border */
+  .glow-border {
+    @apply relative;
+  }
+
+  .glow-border::after {
+    content: '';
+    @apply absolute -inset-[1px] rounded-xl opacity-0 transition-opacity duration-300;
+    background: linear-gradient(45deg, hsl(180 100% 50%), hsl(190 100% 40%), hsl(180 100% 50%));
+    z-index: -1;
+    filter: blur(8px);
+  }
+
+  .glow-border:hover::after {
+    @apply opacity-60;
+  }
+
+  /* Magnetic Button Base */
+  .magnetic-btn {
+    @apply relative inline-flex items-center justify-center overflow-hidden transition-all duration-300;
+    transform-style: preserve-3d;
+  }
+
+  .magnetic-btn::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: radial-gradient(circle at center, hsl(180 100% 50% / 0.3), transparent 70%);
+  }
+
+  .magnetic-btn:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Noise Overlay */
+  .noise-overlay {
+    @apply pointer-events-none fixed inset-0 z-50 opacity-[0.03];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  /* Animated Grid Background */
+  .cyber-grid {
+    @apply absolute inset-0 overflow-hidden;
+    background-image: 
+      linear-gradient(hsl(180 100% 50% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(180 100% 50% / 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Pulse Animation */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(142 70% 45% / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(142 70% 45% / 0.8);
+    }
+  }
+
+  /* Counter Animation */
+  .counter-animate {
+    @apply tabular-nums;
+  }
+
+  /* Scroll Indicator */
+  .scroll-indicator {
+    @apply w-[2px] h-16 bg-gradient-to-b from-primary to-transparent;
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(10px);
+      opacity: 0.5;
+    }
+  }
+
+  /* Service Card Hover */
+  .service-card {
+    @apply glass-card p-6 cursor-pointer transition-all duration-500;
+  }
+
+  .service-card:hover {
+    @apply scale-[1.02];
+    box-shadow: var(--glow-cyan);
+    border-color: hsl(180 100% 50% / 0.5);
+  }
+
+  /* Stats Card */
+  .stats-card {
+    @apply glass-card p-6 text-center;
+  }
+
+  /* Tool Logo */
+  .tool-logo {
+    @apply relative p-4 rounded-xl bg-muted/50 transition-all duration-300;
+  }
+
+  .tool-logo:hover {
+    @apply bg-primary/10;
+    box-shadow: var(--glow-cyan);
+  }
+
+  /* Timeline */
+  .timeline-line {
+    @apply absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary via-primary/50 to-transparent;
+  }
+
+  /* Testimonial Card */
+  .testimonial-card {
+    @apply glass-card p-8 relative;
+  }
+
+  .testimonial-card::before {
+    content: '"';
+    @apply absolute top-4 left-6 text-6xl text-primary/20 font-serif;
+  }
+}
+
+@layer utilities {
+  /* Text Gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-cyan);
+  }
+
+  /* Hide scrollbar */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Section Padding */
+  .section-padding {
+    @apply py-20 md:py-32 px-4 md:px-8;
+  }
+}
