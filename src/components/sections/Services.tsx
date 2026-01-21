@@ -10,9 +10,12 @@ import {
 } from "lucide-react"
 import { InteractiveGradient } from "./interactive-gradient-card.tsx"
 
+
+
+
 const services = [
   {
-    icon: Search,
+    img: "/src/assets/result/seo.png",
     title: "SEO Engineering",
     problem: "Invisible on Google, losing to competitors",
     strategy: "Technical SEO + AI optimization + E-E-A-T authority building",
@@ -20,7 +23,7 @@ const services = [
     color: "from-cyan-500 to-blue-500",
   },
   {
-    icon: Target,
+    img: "/src/assets/result/performance.png",
     title: "Performance Ads",
     problem: "Wasted ad spend, low ROAS",
     strategy: "Data-driven targeting + conversion-optimized funnels",
@@ -28,7 +31,7 @@ const services = [
     color: "from-emerald-500 to-teal-500",
   },
   {
-    icon: TrendingUp,
+    img: "/src/assets/result/conversion.png",
     title: "Conversion Optimization",
     problem: "Traffic but no sales or leads",
     strategy: "CRO audits + A/B testing + UX optimization",
@@ -36,7 +39,7 @@ const services = [
     color: "from-orange-500 to-amber-500",
   },
   {
-    icon: PenTool,
+    img: "/src/assets/result/content.png",
     title: "Content & Authority",
     problem: "No brand recognition or trust",
     strategy: "E-E-A-T content + media mentions + influencer collabs",
@@ -44,7 +47,7 @@ const services = [
     color: "from-purple-500 to-pink-500",
   },
   {
-    icon: BarChart3,
+    img: "/src/assets/result/ai.png",
     title: "Analytics Intelligence",
     problem: "Data chaos, no actionable insights",
     strategy: "Dashboard setup + funnel analysis + predictive analytics",
@@ -52,7 +55,7 @@ const services = [
     color: "from-red-500 to-rose-500",
   },
   {
-    icon: Zap,
+    img: "/src/assets/result/coco.png",
     title: "COCO Strategy",
     problem: "Fragmented digital presence",
     strategy: "Content Optimization + Conversion Optimization integration",
@@ -127,7 +130,11 @@ export const Services: React.FC = () => {
                           <div
                             className={`inline-flex p-3 bg-gradient-to-r ${service.color} text-white`}
                           >
-                            <service.icon className="w-6 h-6" />
+                            <img
+                              src={service.img}
+                              alt={service.title}
+                              className="w-6 h-6 object-contain"
+                            />
                           </div>
 
                           <h3 className="font-display text-xl font-bold text-foreground">
@@ -176,7 +183,11 @@ export const Services: React.FC = () => {
                         <div
                           className={`inline-flex p-4 bg-gradient-to-r ${service.color} text-white mb-4`}
                         >
-                          <service.icon className="w-8 h-8" />
+                          <img
+                            src={service.img}
+                            alt={service.title}
+                            className="w-14 h-14 object-contain"
+                          />
                         </div>
 
                         <h3 className="font-display text-xl font-bold text-foreground mb-2">

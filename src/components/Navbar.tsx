@@ -97,7 +97,7 @@ export const Navbar: React.FC = () => {
                   </a>
                 ))}
                 <a
-                  href="#contact"
+                  href="917088717909"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="mt-4 px-6 py-3 bg-primary text-primary-foreground text-center font-semibold rounded-none"
                 >

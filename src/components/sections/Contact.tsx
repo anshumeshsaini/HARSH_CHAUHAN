@@ -84,13 +84,14 @@ export const Contact: React.FC = () => {
               href="#"
               className="w-full justify-center border border-primary"
             >
-              <Calendar className="w-5 h-5" />
+              <Calendar className="w-5 h-5"
+              href="https://wa.me/917088717909" />
               Book Free Strategy Call
             </MagneticButton>
 
             <MagneticButton
               variant="whatsapp"
-              href="https://wa.me/919876543210"
+              href="https://wa.me/917088717909"
               className="w-full justify-center border border-primary"
             >
               <MessageCircle className="w-5 h-5" />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, X, TrendingUp, Target, Zap } from 'lucide-react';
+import { InteractiveCard } from './interactive-card';
 
 const caseStudies = [
   {
@@ -47,7 +48,6 @@ export const CaseStudies: React.FC = () => {
   return (
     <section id="case-studies" className="py-24 bg-background relative">
       <div className="container mx-auto">
-
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -68,39 +68,45 @@ export const CaseStudies: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Cards */}
+        {/* Cards with InteractiveCard wrapper */}
         <div className="grid md:grid-cols-3 gap-6">
           {caseStudies.map((study, index) => (
-            <motion.div
+            <InteractiveCard
               key={study.client}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              InteractiveColor="#00f0ff"
+              tailwindBgClass="bg-background"
+              className="cursor-pointer"
               onClick={() => setSelectedStudy(index)}
-              className="p-6 border border-primary/40 bg-background cursor-pointer hover:border-primary"
             >
-              <div className="flex justify-between mb-4">
-                <div>
-                  <h3 className="font-display text-xl font-bold">
-                    {study.client}
-                  </h3>
-                  <p className="text-xs text-muted-foreground">
-                    {study.industry}
-                  </p>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="p-6 border border-primary/40 h-full flex flex-col"
+              >
+                <div className="flex justify-between mb-4">
+                  <div>
+                    <h3 className="font-display text-xl font-bold">
+                      {study.client}
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                      {study.industry}
+                    </p>
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-primary" />
                 </div>
-                <ChevronRight className="w-5 h-5 text-primary" />
-              </div>
 
-              <p className="text-sm text-muted-foreground mb-6 line-clamp-2">
-                {study.challenge}
-              </p>
+                <p className="text-sm text-muted-foreground mb-6 line-clamp-2 flex-grow">
+                  {study.challenge}
+                </p>
 
-              <div className="flex justify-between text-sm font-semibold">
-                <span className="text-green-400">{study.results.traffic}</span>
-                <span className="text-primary">{study.results.revenue}</span>
-              </div>
-            </motion.div>
+                <div className="flex justify-between text-sm font-semibold">
+                  <span className="text-green-400">{study.results.traffic}</span>
+                  <span className="text-primary">{study.results.revenue}</span>
+                </div>
+              </motion.div>
+            </InteractiveCard>
           ))}
         </div>
 
@@ -121,7 +127,6 @@ export const CaseStudies: React.FC = () => {
                 onClick={(e) => e.stopPropagation()}
                 className="border border-primary bg-background max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8"
               >
-
                 {/* Modal Header */}
                 <div className="flex justify-between mb-8">
                   <div>
@@ -203,12 +208,10 @@ export const CaseStudies: React.FC = () => {
                     </div>
                   </div>
                 </motion.div>
-
               </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
-
       </div>
     </section>
   );
